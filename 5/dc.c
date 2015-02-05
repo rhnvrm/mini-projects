@@ -1,14 +1,12 @@
 #include <stdio.h>
 
-int factorial(int x)
+char* roman(int x)
 {
-    int f = 1;
-    while(x > 0)
-    {
-        f = f * x;
-        x--;
-    }
-    return(f);
+    char * s;
+
+
+
+    return s;
 }
 
 
@@ -17,7 +15,7 @@ int main(){
     int number;
     scanf("%d", &number );
 
-    printf("%d", factorial(number));
+    printf("%s", roman(number));
 
 return 0;
 }
