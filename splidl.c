@@ -1,26 +1,75 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+ 
 #include <curl/curl.h>
+ 
+static size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream)
+{
+  int written = fwrite(ptr, size, nmemb, (FILE *)stream);
+  return written;
+}
  
 int main(void)
 {
-  CURL *curl;
-  CURLcode res;
+  CURL *curl_handle;
+  static const char *headerfilename = "head.out";
+  FILE *headerfile;
+  static const char *bodyfilename = "body.out";
+  FILE *bodyfile;
  
-  curl = curl_easy_init();
-  if(curl) {
-    curl_easy_setopt(curl, CURLOPT_URL, "http://google.com");
-    /* example.com is redirected, so we tell libcurl to follow redirection */ 
-    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+  curl_global_init(CURL_GLOBAL_ALL);
  
-    /* Perform the request, res will get the return code */ 
-    res = curl_easy_perform(curl);
-    /* Check for errors */ 
-    if(res != CURLE_OK)
-      fprintf(stderr, "curl_easy_perform() failed: %s\n",
-              curl_easy_strerror(res));
+  /* init the curl session */ 
+  curl_handle = curl_easy_init();
  
-    /* always cleanup */ 
-    curl_easy_cleanup(curl);
+  /* input the website to save*/
+  char input[255];
+  printf("Enter the website to save: ");
+  scanf("%s", input);
+ 
+ 
+  /* set URL to get */ 
+  curl_easy_setopt(curl_handle, CURLOPT_URL, input);
+ 
+  /* no progress meter please */ 
+  //curl_easy_setopt(curl_handle, CURLOPT_NOPROGRESS, 1L);
+ 
+  /* send all data to this function  */ 
+  curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, write_data);
+ 
+  /* open the header file */ 
+  headerfile = fopen(headerfilename, "wb");
+  if(!headerfile) {
+    curl_easy_cleanup(curl_handle);
+    return -1;
   }
+ 
+  /* open the body file */ 
+  bodyfile = fopen(bodyfilename, "wb");
+  if(!bodyfile) {
+    curl_easy_cleanup(curl_handle);
+    fclose(headerfile);
+    return -1;
+  }
+ 
+  /* we want the headers be written to this file handle */ 
+  curl_easy_setopt(curl_handle, CURLOPT_HEADERDATA, headerfile);
+ 
+  /* we want the body be written to this file handle instead of stdout */ 
+  curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, bodyfile);
+ 
+  /* get it! */ 
+  curl_easy_perform(curl_handle);
+ 
+  /* close the header file */ 
+  fclose(headerfile);
+ 
+  /* close the body file */ 
+  fclose(bodyfile);
+ 
+  /* cleanup curl stuff */ 
+  curl_easy_cleanup(curl_handle);
+ 
   return 0;
 }
