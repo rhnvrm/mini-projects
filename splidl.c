@@ -4,7 +4,7 @@
 
 size_t write_func(void *ptr, size_t size, size_t nmemb, FILE *stream);
 
-void DownloadURL(char* url, const char* file);
+CURLcode DownloadURL(char* url, const char* file);
 
 //callback function for libcurl
 size_t write_func(void *ptr, size_t size, size_t nmemb, FILE *stream)
@@ -12,7 +12,7 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, FILE *stream)
      return fwrite(ptr, size, nmemb, stream);
 }
 
-void DownloadURL(char* url, const char* file){
+CURLcode DownloadURL(char* url, const char* file){
     CURL *curl;
     CURLcode res;
     FILE *outfile;
@@ -29,14 +29,31 @@ void DownloadURL(char* url, const char* file){
         res = curl_easy_perform(curl);
         curl_easy_cleanup(curl);
         fclose(outfile);
+        
+        //print the bytes downloaded
+        double file_size = 0;
+        curl_easy_getinfo(curl,CURLINFO_SIZE_DOWNLOAD,&file_size);
+        printf("\n%lf bytes were downloaded.", file_size);
+        
     }
+    return res;
 }
 
 
 
 int main(void)
 {
-    char *url = "https://github.com/rhnvrm/splidl/archive/master.zip";
-    DownloadURL(url, "master.zip");
-
+  
+    /* TODO: Automate this save variable*/
+    char url[511];
+    char save[255];
+    
+    printf("url: ");
+    scanf("%s", url);
+    printf("\nsave as: ");
+    scanf("%s", save);
+    
+    //download the file and print if any error occured
+    printf("\nDownload completed with '%s'", curl_easy_strerror(DownloadURL(url, save)));
+    
 }
