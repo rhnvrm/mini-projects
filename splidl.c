@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <curl/curl.h>
 
 size_t write_func(void *ptr, size_t size, size_t nmemb, FILE *stream);
@@ -20,13 +21,13 @@ CURLcode DownloadURL(char* url, const char* file){
     if(curl)
     {
         double file_size = 0;
-        //curl_easy_getinfo(curl, CURLINFO_CONTENT_LENGTH_DOWNLOAD, &file_size);
-        //printf("\n%lf bytes will be downloaded.\n", file_size);
+        curl_easy_getinfo(curl, CURLINFO_CONTENT_LENGTH_DOWNLOAD, &file_size);
+        printf("\n%lf bytes will be downloaded.\n", file_size);
         
         outfile = fopen(file, "w");
         printf ( "downloading the url %s\n", url );
         curl_easy_setopt(curl, CURLOPT_URL, url);
-        curl_easy_setopt(curl, CURLOPT_RANGE, "0-2999");
+        curl_easy_setopt(curl, CURLOPT_RANGE, "0-9999999");
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, outfile);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_func);
@@ -34,7 +35,7 @@ CURLcode DownloadURL(char* url, const char* file){
         res = curl_easy_perform(curl);
         curl_easy_cleanup(curl);
         fclose(outfile);
-        // http://aff.apk4fun.com/go.php?url=http%3A%2F%2Fwww11.zippyshare.com%2Fv%2F8881145%2Ffile.html
+        // https://dl.google.com/dl/android/studio/ide-zips/1.1.0/android-studio-ide-135.1740770-linux.zip
         //print the bytes downloaded
 
         curl_easy_getinfo(curl,CURLINFO_SIZE_DOWNLOAD,&file_size);
@@ -59,6 +60,10 @@ int main(void)
     scanf("%s", save);
     
     //download the file and print if any error occured
-    printf("\nDownload completed with '%s'", curl_easy_strerror(DownloadURL(url, save)));
+    /*for (int i = 0; i < 26; i++){
+      
+    }*/
+    
+    printf("\nDownload of '%s' completed with '%s'", save, curl_easy_strerror(DownloadURL(url, save)));
     
 }
