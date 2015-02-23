@@ -19,9 +19,14 @@ CURLcode DownloadURL(char* url, const char* file){
     curl = curl_easy_init();
     if(curl)
     {
+        double file_size = 0;
+        //curl_easy_getinfo(curl, CURLINFO_CONTENT_LENGTH_DOWNLOAD, &file_size);
+        //printf("\n%lf bytes will be downloaded.\n", file_size);
+        
         outfile = fopen(file, "w");
         printf ( "downloading the url %s\n", url );
         curl_easy_setopt(curl, CURLOPT_URL, url);
+        curl_easy_setopt(curl, CURLOPT_RANGE, "0-2999");
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, outfile);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_func);
@@ -29,9 +34,9 @@ CURLcode DownloadURL(char* url, const char* file){
         res = curl_easy_perform(curl);
         curl_easy_cleanup(curl);
         fclose(outfile);
-        
+        // http://aff.apk4fun.com/go.php?url=http%3A%2F%2Fwww11.zippyshare.com%2Fv%2F8881145%2Ffile.html
         //print the bytes downloaded
-        double file_size = 0;
+
         curl_easy_getinfo(curl,CURLINFO_SIZE_DOWNLOAD,&file_size);
         printf("\n%lf bytes were downloaded.", file_size);
         
@@ -45,7 +50,7 @@ int main(void)
 {
   
     /* TODO: Automate this save variable*/
-    char url[511];
+    char url[1000];
     char save[255];
     
     printf("url: ");
