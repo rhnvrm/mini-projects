@@ -5,7 +5,7 @@
 
 size_t write_func(void *ptr, size_t size, size_t nmemb, FILE *stream);
 
-char RANGES[10][50] = {"0-9999", "10000-19999", "20000-29999", "30000-39999", "40000-49999", "50000-59999", "60000-69999", "70000-79999", "80000-89999", "90000-99999"};
+char RANGES[10][50] = {"0-99999", "100000-199999", "200000-299999", "300000-399999", "400000-499999", "500000-599999", "600000-699999", "700000-799999", "800000-899999", "900000-999999"};
 CURLcode DownloadURL(char* url, const char* file);
 
 //callback function for libcurl
@@ -45,8 +45,8 @@ CURLcode DownloadURL(char* url, const char* file){
         curl_easy_cleanup(curl);
 
         // https://dl.google.com/dl/android/studio/ide-zips/1.1.0/android-studio-ide-135.1740770-linux.zip
-        // 26.3 http://nbsadminassist.com/wp-content/uploads/2013/10/Google_wordmark.gif 
         // 56.1 https://pandodaily.files.wordpress.com/2014/03/google-in-bed-w-mercenaries-n-military-e1395865855795.jpg
+        // 633  http://hdwallpaperd.com/wp-content/uploads/wallpaper-photos-61.jpg
         //print the bytes downloaded
 
        
@@ -70,5 +70,7 @@ int main(void)
     
     //download the file and print if any error occured
     printf("\nDownload of '%s' completed with '%s'", save, curl_easy_strerror(DownloadURL(url, save)));
+    system("cat file.p? > file.jpg"); // join the files
+    system("rm file.p?");
     
 }

@@ -1,3 +1,3 @@
 # splidl
-A download splitter which accelerates download speeds written using libcurl in C as a Course Project
+A download splitter written using libcurl in C as a Course Project for ETCS 101. 
 
