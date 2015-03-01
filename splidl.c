@@ -4,8 +4,9 @@
  *      examples:
  *      //      mb https://dl.google.com/dl/android/studio/ide-zips/1.1.0/android-studio-ide-135.1740770-linux.zip
  *      // 56.1 kb https://pandodaily.files.wordpress.com/2014/03/google-in-bed-w-mercenaries-n-military-e1395865855795.jpg
- *      // 633  kb http://hdwallpaperd.com/wp-content/uploads/wallpaper-photos-61.jpg
- *      
+ * 
+ * 
+ *       
  *      proof of concept example:
  *      // http://mirror.cse.iitk.ac.in/ubuntu/pool/multiverse/v/virtualbox-guest-additions-iso/virtualbox-guest-additions-iso_4.3.10-1_all.deb
  *
@@ -83,7 +84,7 @@ int main(void)
 
     //download the file and print if any error occured
     printf("\nDownload of '%s' completed with '%s'", save, curl_easy_strerror(DownloadURL(url, save)));
-    system(strcpy(command, save)); // join the files
+    system(strcat(command, save)); // join the files
     system("rm file.p?");
     
 }
