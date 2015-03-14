@@ -53,6 +53,23 @@ void clrscr()
 	for(int i = 0; i < 24; i++){ printf("\n"); }
 }
 
+void randomize_board(int arr[][4]){};
+
+int check_board(int arr[][4]){
+	
+	int won[4][4] = { {1,2,3,4}, {5,6,7,8}, {9,10,11,12}, {13,14,15,0}};
+	
+	for(int i = 0; i < 4; i++){
+		for(int j = 0; j < 4; j++){
+			if(arr[i][j] != won[i][j])
+				return 0;
+		}
+	}
+	
+	return  1;
+	
+};
+
 int main(int argc, char **argv)
 {
 	clrscr();
@@ -66,6 +83,9 @@ int main(int argc, char **argv)
 	
 	while(exit == 0)
 	{
+		randomize_board(a); //randomize the map
+
+		
 		printf("MOVES: %d\n", moves);
 		printf("======================================\n");
 		
@@ -84,7 +104,6 @@ int main(int argc, char **argv)
 			case 'w': 
 				if(z_row > 0)swap(&a[z_row][z_col], &a[z_row-1][z_col]);
 				break;
-			
 			case 's': 
 				if(z_row < 3)swap(&a[z_row][z_col], &a[z_row+1][z_col]);
 				break;
@@ -96,10 +115,12 @@ int main(int argc, char **argv)
 				break;
 			case 'q': 
 				exit = 1;
-				break;							
-				
+				break;									
 		}
 		clrscr();
+		
+		exit = check_board(a); //check if game won
+		
 	}
 	
 	return 0;
