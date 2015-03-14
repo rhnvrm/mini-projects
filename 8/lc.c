@@ -26,19 +26,28 @@
 
 #include <stdio.h>
 
-int find_zero(int arr[][4], int l, int b)
+int find_zero(int arr[][4])
 {
 	int pos = 0;
 	
 	for(int i = 0; i< 4; i++){
-		printf("\n");
 		for(int j = 0; j< 4; j++){
-			printf("%d\t", a[i][j]);
+			if(arr[i][j] == 0)
+				return pos;
+			
+			pos++;
 		}
 	}
 	
-	return
+	return -1;
 }
+
+void swap(int *a, int *b){
+	int t = *a;
+	*a = *b;
+	*b = t;
+}
+
 void clrscr()
 {
 	for(int i = 0; i < 24; i++){ printf("\n"); }
@@ -46,7 +55,7 @@ void clrscr()
 
 int main(int argc, char **argv)
 {
-	
+	clrscr();
 	int a[4][4] = { {1,2,3,4}, {5,6,7,8}, {9,10,11,12}, {13,14,15,0}};
 	
 	int exit = 0;
@@ -69,27 +78,28 @@ int main(int argc, char **argv)
 		
 		printf("\n{w,s,a,d,q}? ");
 		scanf("%s", &in);
-		
+		moves++;
+		int z_row = find_zero(a)/4, z_col = find_zero(a)%4;
 		switch(in){
 			case 'w': 
-				find_zero(arr)
+				if(z_row > 0)swap(&a[z_row][z_col], &a[z_row-1][z_col]);
 				break;
 			
 			case 's': 
-				
+				if(z_row < 3)swap(&a[z_row][z_col], &a[z_row+1][z_col]);
 				break;
 			case 'a': 
-				
+				if(z_col > 0)swap(&a[z_row][z_col], &a[z_row][z_col-1]);
 				break;
 			case 'd': 
-				
+				if(z_col < 3)swap(&a[z_row][z_col], &a[z_row][z_col+1]);
 				break;
 			case 'q': 
 				exit = 1;
 				break;							
 				
 		}
-
+		clrscr();
 	}
 	
 	return 0;
