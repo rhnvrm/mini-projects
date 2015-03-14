@@ -136,7 +136,7 @@ int main(int argc, char **argv)
 		}
 		clrscr();
 		
-		exit = check_board(a); //check if game won
+		if(exit == 0) exit = check_board(a); //check if game won
 		
 	}
 	
