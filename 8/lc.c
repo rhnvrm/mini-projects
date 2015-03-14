@@ -25,6 +25,11 @@
 
 
 #include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+
+
 
 int find_zero(int arr[][4])
 {
@@ -53,7 +58,15 @@ void clrscr()
 	for(int i = 0; i < 24; i++){ printf("\n"); }
 }
 
-void randomize_board(int arr[][4]){};
+void randomize_board(int arr[][4]){
+
+	int num_swaps = rand()%20 + 5;
+	
+	while(num_swaps--){
+		swap(&arr[rand()%4][rand()%4], &arr[rand()%4][rand()%4]);
+	}
+	
+}
 
 int check_board(int arr[][4]){
 	
@@ -73,6 +86,9 @@ int check_board(int arr[][4]){
 int main(int argc, char **argv)
 {
 	clrscr();
+	
+	srand(time(NULL));
+	
 	int a[4][4] = { {1,2,3,4}, {5,6,7,8}, {9,10,11,12}, {13,14,15,0}};
 	
 	int exit = 0;
