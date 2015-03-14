@@ -90,7 +90,8 @@ int main(int argc, char **argv)
 	srand(time(NULL));
 	
 	int a[4][4] = { {1,2,3,4}, {5,6,7,8}, {9,10,11,12}, {13,14,15,0}};
-	
+	randomize_board(a); //randomize the map
+
 	int exit = 0;
 	
 	int moves = 0;
@@ -99,7 +100,7 @@ int main(int argc, char **argv)
 	
 	while(exit == 0)
 	{
-		randomize_board(a); //randomize the map
+
 
 		
 		printf("MOVES: %d\n", moves);
