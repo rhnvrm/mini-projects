@@ -11,6 +11,7 @@ DDRC=0b11111111;          // declare PortC as a output port connected to the mot
 
 int ls=0, rs=0;
 int flag = 1;
+int speed = 5;
 
  
 while(1) 				  // infinite loop
@@ -27,7 +28,7 @@ while(1) 				  // infinite loop
 
     if((ls==0b00010000) && (rs==0b00100000))      // if both sensors "on"
 		{
-        	if(flag >= 10){
+        	if(flag >= speed){
 			flag = 0;
 			PORTC=0b00001001;  // move straight
 		}
