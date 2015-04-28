@@ -2,7 +2,7 @@
 #include <avr/io.h>       // include avr header file
 #include <util/delay.h>   // include delay header file
 
-#define SPEED 3
+#define SPEED 2
 
 // use _delay_ms(ms) for delaying
 
@@ -13,7 +13,7 @@ DDRC=0b11111111;          // declare PortC as a output port connected to the mot
 
 int ls=0, rs=0;
 int flag = 1, slow = 0;
-int speed = SPEED;
+int speed = SPEED, count  = 0;
 
  
 while(1) 				  // infinite loop
@@ -30,18 +30,20 @@ while(1) 				  // infinite loop
 
     if((ls==0b00010000) && (rs==0b00100000))      // if both sensors "on"
 		{
-        	if(flag >= speed){
+			count++;
+        		if(flag >= speed){
 				flag=0;
 				PORTC=0b00001001;
-				if(slow == 0) speed = SPEED;
+				if(count > 1000) speed = 1;
 				else{
-					speed = SPEED + 3;
-					slow--;
+					count = 0;
 				}
 			}  // move straight
 		
-			else
+			else{
 				PORTC=0b00000000;  // stop	
+				//speed = SPEED;
+			}
 
 		flag++;
 
@@ -51,15 +53,20 @@ while(1) 				  // infinite loop
         {
 			PORTC=0b00010001;  // turn left
 			//flag = -5;
-			slow = 1;
-			//speed = SPEED + 3;
+			//flag -=5;
+			count = 0;
+			//speed+=3;
+			//slow = 50;
+			//speed = SPEED + 100;
         }
 
 	if((ls==0b00010000)&&(rs==0b00000000))  	 	 // if left sensor on but right sensor off
         {
 			PORTC=0b00011000;  // turn right
 			//flag = -5;
-			slow = 1;
+			count = 0;
+			//slow = 1;
+			//speed = SPEED + 100;
 			//speed = SPEED + 3;
 		}
 

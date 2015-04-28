@@ -30,10 +30,10 @@ int main(void)
 	while(1){
 
 		output_high(PORTD, LED);
-		delay_ms(200);		delay_ms(200);		delay_ms(200);
+		delay_ms(200);delay_ms(200);delay_ms(200);delay_ms(200);delay_ms(200);
 
 		output_low(PORTD,LED);
-		delay_ms(200);		delay_ms(200);		delay_ms(200);
+		delay_ms(200);delay_ms(200);delay_ms(200);delay_ms(200);delay_ms(200);
 
 	}
       

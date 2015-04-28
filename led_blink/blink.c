@@ -1,7 +1,7 @@
 #include<avr/io.h>
 
 #ifndef F_CPU
-#define F_CPU 16000000UL // 16 MHz clock speed
+#define F_CPU 4000000UL // 16 MHz clock speed
 #endif
 
 #define LED PD6
