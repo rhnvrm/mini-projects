@@ -3,9 +3,11 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var restify = require('express-restify-mongoose')
+var restify = require('express-restify-mongoose');
+var cors = require('cors');
+
  
-mongoose.connect('mongodb://localhost/database');
+mongoose.connect('mongodb://user:passw0rd@waffle.modulusmongo.net:27017/abeqoS9i');
  
 var MarkerSchema = new Schema({
   location: { 
@@ -43,18 +45,14 @@ var MarkerSchema = new Schema({
 });
 MarkerSchema.index({location: '2d', formatted_address: "text"});
 var MarkerModel = mongoose.model('Marker', MarkerSchema);
- /*
-var Invoice = new Schema({
-    customer: { type: Schema.Types.ObjectId, ref: 'Customer' },
-    amount: { type: Number, required: true }
-});
-var InvoiceModel = mongoose.model('Invoice', Invoice);
- */
+
 
 var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride());
+app.use(cors());
+
  
 var router = express.Router();
 restify.serve(router, MarkerModel);
