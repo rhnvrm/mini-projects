@@ -55,9 +55,25 @@ var router = express.Router();
 restify.serve(router, Marker);
 //restify.serve(router, InvoiceModel);
 app.use(router);
+
+app.get('/near/:lng/:lat', function(req, res) {
+      Marker.find({ loc : { '$near' : [parseFloat(req.params.lng), parseFloat(req.params.lat)] } }).limit(10).exec(function(err, data){
+        if(err){
+          res.send(500, "something went wrong");
+        }
+        else{
+          res.json(data);
+        }
+      });
+      //console.log("heare");
+});
+
  
 app.listen(8080, function() {
-    console.log("Express server listening on port 8080");/*
+console.log("Express server listening on port 8080");
+});
+
+/*
     Marker.find({ loc : { '$near' : [78.881213, 28.366455] } }, console.log);
     Marker.find({ loc : { '$near' : [78.881213, 28.366455] } }).limit(5).exec(console.log);*/
      
@@ -72,4 +88,3 @@ app.listen(8080, function() {
 }, function(err, result) {
   console.log(result.documents[0].results);
 }); */
-});
