@@ -32,6 +32,7 @@
                         <option>Male/Female</option>
                     </select>
             </div>
+            <iframe id="myIframe" src = "http://imgur.com" height = "500px" width="100%" ></iframe>
             <div class = "form-group">
                     <label>Gallery URL</label>
                     <input name="galleryurl" type="text" class="form-control" >              
@@ -47,10 +48,10 @@
                       <option>5</option>
                     </select>
                     <!--<input name="room[max_people]" type="text" class="form-control" >-->
-                    <label>Rent</label>
-                    <input name="room[rent]" type="text" class="form-control" >
+                    <label>Rent Amount</label>
+                    <input name="room[rent]" type="number" class="form-control" >
                     <label>Security Deposit Amount</label>
-                    <input name="room[security]" type="text" class="form-control" >
+                    <input name="room[security]" type="number" class="form-control" >
             </div>
             <div class = "form-group">
                     <h3>Services</h3>
@@ -151,17 +152,18 @@
             ;
 
 
-            console.log(formData);
+            alert("Added!");
             $.ajax({
               type: "POST",
-              url: "http://128.199.199.233:8080/api/v1/Markers",
+              url: "http://129.199.199.233:8080/api/v1/Markers",
               data: JSON.stringify(formData),
-              success: function(){},
+              success: function(){
+                console.log("Added!");
+              },
               dataType: "json",
               contentType : "application/json"
             });
         }
-
 
         </script>
         <script type="text/javascript" src="map.js"></script>
