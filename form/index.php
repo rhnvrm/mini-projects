@@ -32,7 +32,7 @@
                         <option>Male/Female</option>
                     </select>
             </div>
-           <!-- <iframe id="myIframe" src = "http://imgur.com" height = "500px" width="100%" ></iframe> -->
+           <iframe id="myIframe" src = "http://imgur.com" height = "500px" width="100%" ></iframe> 
             <div class = "form-group">
                     <label>Gallery URL</label>
                     <input name="galleryurl" type="text" class="form-control" >              
