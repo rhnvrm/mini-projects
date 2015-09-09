@@ -160,7 +160,7 @@
               url: "http://128.199.199.233:8080/api/v1/Markers",
               data: formData,
               success: function(){},
-              dataType: "jsonp",
+              dataType: "json",
               contentType : "application/json"
             });
         }

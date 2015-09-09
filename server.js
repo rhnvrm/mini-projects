@@ -55,7 +55,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride());
 app.use(cors());
-
+app.options('*', cors());
  
 var router = express.Router();
 restify.serve(router, Marker);
