@@ -7,7 +7,7 @@ var restify = require('express-restify-mongoose');
 var cors = require('cors');
 
  
-mongoose.connect('mongodb://localhost/database');
+mongoose.connect('mongodb://localhost/db_tripostay_1');
  
 var MarkerSchema = new Schema({
   loc: [],
@@ -51,6 +51,11 @@ var Marker = mongoose.model('Marker', MarkerSchema);
 
 
 var app = express();
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride());

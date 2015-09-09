@@ -9,7 +9,7 @@
     </head>
     <body <?php 
 
-    if(isset($_POST)){
+    if(isset($_POST["gender"])){
         echo "onload='submitData()'";
     }
 
@@ -140,9 +140,6 @@
 
         function submitData() {
          
-
-            event.preventDefault();
-
             var formData = 
                
                 <?php 
@@ -157,8 +154,8 @@
             console.log(formData);
             $.ajax({
               type: "POST",
-              url: "http://128.199.199.233:8080/api/v1/Markers",
-              data: formData,
+              url: "http://localhost:8080/api/v1/Markers",
+              data: JSON.stringify(formData),
               success: function(){},
               dataType: "json",
               contentType : "application/json"
