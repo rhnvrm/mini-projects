@@ -157,10 +157,10 @@
             console.log(formData);
             $.ajax({
               type: "POST",
-              url: "http://localhost:8080/api/v1/Markers",
+              url: "http://128.199.199.233:8080/api/v1/Markers",
               data: formData,
               success: function(){},
-              dataType: "json",
+              dataType: "jsonp",
               contentType : "application/json"
             });
         }
