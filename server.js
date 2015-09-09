@@ -15,11 +15,15 @@ var MarkerSchema = new Schema({
     type: String,
     index: 'text'
   },
-  gender: Number,
+  rev_geo_address: {
+    type: String,
+    index: 'text'
+  },
+  gender: String,
   rooms: {
     max_people: Number,
     rent: Number,
-  security: Number
+    security: Number
   },
   galleryurl: String,
   services: {
