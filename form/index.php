@@ -9,7 +9,7 @@
 <html>
     <head>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
         <title>Data Entry Portal for Tripostay.com</title>
@@ -18,7 +18,7 @@
     <body>
     <div class="container">
         <h1 class="pager">Data Entry Portal for <span class = "glyphicon glyphicon-home" aria-hidden="true">tripostay.com</span></h1>
-        <form method="post" action="http://localhost:8080/api/v1/Markers" enctype='application/json'>
+        <form method="post" id="myForm" action="http://localhost:8080/api/v1/Markers" enctype="application/json">
         <div class = "row">
             <h2>Enter the following details:</h2>
             <div class = "form-group">
@@ -134,9 +134,32 @@
         </div>
         <div class="row"><br></div>
         <div class="row">
-            <input type="submit" class="btn btn-primary btn-block">
+            <input id="submit" value="Submit" type="submit" class="btn btn-primary btn-block">
         </div>
         </form>
+        <script type="text/javascript">
+
+        /*$( "#myForm" ).submit(function( event ) {
+         
+          // Stop form from submitting normally
+          event.preventDefault();
+            var formData = JSON.stringify($("#myForm").serializeArray());
+            console.log(formData);
+          // Get some values from elements on the page:
+            /*$.ajax({
+              type: "POST",
+              url: "http://localhost:8080/api/v1/Markers",
+              data: formData,
+              success: function(){},
+              dataType: "json",
+              contentType : "application/json"
+            });*/
+
+
+       // });
+
+
+        </script>
         <script type="text/javascript" src="map.js"></script>
     </body>
 </html>
