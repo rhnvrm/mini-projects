@@ -18,7 +18,7 @@
     <body>
     <div class="container">
         <h1 class="pager">Data Entry Portal for <span class = "glyphicon glyphicon-home" aria-hidden="true">tripostay.com</span></h1>
-        <form method="post" id="myForm" action="http://localhost:8080/api/v1/Markers" enctype="application/json">
+        <form method="post" id="myForm" action="http://128.199.199.233:8080/api/v1/Markers" enctype="application/json">
         <div class = "row">
             <h2>Enter the following details:</h2>
             <div class = "form-group">
