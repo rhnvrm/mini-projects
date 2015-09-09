@@ -66,7 +66,7 @@ function geocodeLatLng(geocoder, map) {
       if (results[1]) {
         document.getElementById('rev_geo_address').value = results[1].formatted_address;
       } else {
-        window.alert('No results found');
+        window.alert('No results found in Geocoder');
       }
     } else {
       window.alert('Geocoder failed due to: ' + status);
