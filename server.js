@@ -20,7 +20,7 @@ var MarkerSchema = new Schema({
     index: 'text'
   },
   gender: String,
-  rooms: {
+  room: {
     max_people: Number,
     rent: Number,
     security: Number
@@ -28,23 +28,25 @@ var MarkerSchema = new Schema({
   galleryurl: String,
   services: {
     food: {
-      breakfast: Number,
-      lunch: Number,
-      dinner: Number
+      breakfast: String,
+      lunch: String,
+      dinner: String,
+      cost: Number
     },
     housekeeping: {
-      remark: String,
+      available: String,
       cost: Number
     },
     parking: String,
     laundry: String
   },
   rules:{
-      drinking: Number,
-      smoking: Number
+      drinking: String,
+      smoking: String
   }
 });
 MarkerSchema.index({ loc: '2d' });
+
 var Marker = mongoose.model('Marker', MarkerSchema);
 
 
@@ -72,6 +74,11 @@ app.get('/near/:lng/:lat', function(req, res) {
       //console.log("heare");
 });
 
+app.post('/mirror', function(req, res) {
+      console.log(req);
+      //console.log("heare");
+      res.json("See console");
+});
  
 app.listen(8080, function() {
 console.log("Express server listening on port 8080");

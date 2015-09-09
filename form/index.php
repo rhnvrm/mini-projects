@@ -1,11 +1,3 @@
-<?php 
-    echo '<pre>';
-    $data = $_POST;
-    $json_string = json_encode($data, JSON_PRETTY_PRINT);
-    echo $json_string;
-    echo '</pre>';
-?>
-
 <html>
     <head>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
@@ -15,10 +7,17 @@
         <title>Data Entry Portal for Tripostay.com</title>
 
     </head>
-    <body>
+    <body <?php 
+
+    if(isset($_POST)){
+        echo "onload='submitData()'";
+    }
+
+?>
+>
     <div class="container">
         <h1 class="pager">Data Entry Portal for <span class = "glyphicon glyphicon-home" aria-hidden="true">tripostay.com</span></h1>
-        <form method="post" id="myForm" action="http://128.199.199.233:8080/api/v1/Markers" enctype="application/json">
+        <form method="post" id="myForm" action="/" enctype="application/json">
         <div class = "row">
             <h2>Enter the following details:</h2>
             <div class = "form-group">
@@ -139,24 +138,32 @@
         </form>
         <script type="text/javascript">
 
-        /*$( "#myForm" ).submit(function( event ) {
+        function submitData() {
          
-          // Stop form from submitting normally
-          event.preventDefault();
-            var formData = JSON.stringify($("#myForm").serializeArray());
+
+            event.preventDefault();
+
+            var formData = 
+               
+                <?php 
+                    $data = $_POST;
+                    $json_string = json_encode($data, JSON_PRETTY_PRINT);
+                    echo $json_string;
+                ?>
+
+            ;
+
+
             console.log(formData);
-          // Get some values from elements on the page:
-            /*$.ajax({
+            $.ajax({
               type: "POST",
               url: "http://localhost:8080/api/v1/Markers",
               data: formData,
               success: function(){},
               dataType: "json",
               contentType : "application/json"
-            });*/
-
-
-       // });
+            });
+        }
 
 
         </script>
