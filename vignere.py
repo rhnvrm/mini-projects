@@ -1,5 +1,5 @@
-ciphertext = 'commonsenseisnotsocommon'
-key = 'pizza'
+ciphertext = raw_input()
+key = raw_input()
 
 def itoc(x):
 	return chr(x +  ord('a')) 
