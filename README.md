@@ -1,5 +1,4 @@
 # mini-projects
-repo to share some of mini-projects I have written.
 
 ## Codebreaking
 * [Ceaser Cipher](ceaser.py)
@@ -8,3 +7,4 @@ repo to share some of mini-projects I have written.
 ## Text
 * [Fizz Buzz](fizzbuzz.sh)
 * [Reverse Input String](reverse.py)
+* [Pig-Latin](piglatin.py)
