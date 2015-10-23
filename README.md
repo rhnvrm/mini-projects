@@ -6,4 +6,5 @@ repo to share some of mini-projects I have written.
 * [Vignere Cipher](vignere.py)
 
 ## Text
+* [Fizz Buzz](fizzbuzz.sh)
 * [Reverse Input String](reverse.py)
