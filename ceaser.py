@@ -1,4 +1,4 @@
-ciphertext = "abc xyz"
+ciphertext = raw_input()
 
 def itoc(x):
 	return chr(x+ ord('a'))
