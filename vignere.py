@@ -1,6 +1,9 @@
 ciphertext = raw_input()
 key = raw_input()
 
+ciphertext = ciphertext.lower()
+key = key.lower()
+
 def itoc(x):
 	return chr(x +  ord('a')) 
 
