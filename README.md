@@ -8,3 +8,6 @@
 * [Fizz Buzz](fizzbuzz.sh)
 * [Reverse Input String](reverse.py)
 * [Pig-Latin](piglatin.py)
+
+## Uncategorized
+* [Binary Clock](gh-pages/bclock/index.html)
