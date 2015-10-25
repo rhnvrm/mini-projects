@@ -10,4 +10,4 @@
 * [Pig-Latin](piglatin.py)
 
 ## Uncategorized
-* [Binary Clock](gh-pages/bclock/index.html)
+* [Binary Clock](http://rhnvrm.github.io/mini-projects/bclock/index.html)
