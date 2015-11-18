@@ -1,5 +1,7 @@
 # mini-projects
 
+Some mini projects that I work on
+
 ## Codebreaking
 * [Ceaser Cipher](ceaser.py)
 * [Vignere Cipher](vignere.py)
