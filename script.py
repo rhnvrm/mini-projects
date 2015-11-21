@@ -27,7 +27,12 @@ print "Sample Size: " + repr(len(first_names))
 fdist = FreqDist(first_names)
 top300 = fdist.most_common(300)
 data = fdist.most_common(25)
-data = dict(data)
-plt.plot(data)
+print "\nTOP 25:"
+print data
+print "\nTOP 300:"
+print top300
 
-plt.show()
+data = dict(data)
+
+
+#plt.show()
