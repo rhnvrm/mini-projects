@@ -13,3 +13,4 @@ Some mini projects that I work on
 
 ## Uncategorized
 * [Binary Clock](http://rhnvrm.github.io/mini-projects/bclock/index.html)
+* [Adult Swim Live](https://rawgit.com/rhnvrm/mini-projects/master/adult_swim.html) - Open this page and use the "Add to desktop" feature of your browser to have a resizable livestream of Adult Swim to watch while coding.
