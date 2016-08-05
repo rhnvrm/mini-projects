@@ -52,10 +52,10 @@ def process_line(line):
 	            if parking.lot[i]:
 	                print('%d\t%s\t%s'%(i+1, parking.lot[i].reg_no, parking.lot[i].color), end='')
 
-	except ValueError:
-		print("Invalid Data Entered!")
-	except TypeError:
-		print("Datatype Mismatch!")
+    except ValueError:
+        print("Invalid Data Entered!")
+    except TypeError:
+        print("Datatype Mismatch!")
                  
 if len(sys.argv) == 2:  
     lines = list(open(sys.argv[1]))
