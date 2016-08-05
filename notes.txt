@@ -1,0 +1,4 @@
+- accept file name as a parameter
+- create parking lot -- n cars
+- park fmt = park car_reg color output allocated slot
+- leave slot_no
