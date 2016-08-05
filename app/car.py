@@ -8,7 +8,7 @@ class Car(object):
         if(reg_no is None or color is None):
             raise TypeError
 
-        if(isinstance(reg_no, str)):
+        if(isinstance(reg_no, str) and reg_no.count('-') == 3):
             self.reg_no = reg_no
         else:
             raise ValueError
