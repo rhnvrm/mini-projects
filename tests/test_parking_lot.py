@@ -68,4 +68,6 @@ class TestParkingLotMethods(unittest.TestCase):
         
         #find_car_by_reg_no returns slot
         self.assertEqual(self.lot.find_car_by_reg_no("KA-02-HH-1234"), 2)
-        
+   
+    def test_find_car_by_reg_no_returns_none_if_not_found(self):
+        self.assertEqual(self.lot.find_car_by_reg_no("KA-02-HH-1234"), None)
