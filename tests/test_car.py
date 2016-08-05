@@ -15,8 +15,11 @@ class TestCarCreation(unittest.TestCase):
 
     def test_car_raises_error_if_arg_is_not_string(self):
         self.assertRaises(ValueError, Car, 1234, "White")
-        self.assertRaises(ValueError, Car, "KA-1234", 123)
+        self.assertRaises(ValueError, Car, "KA-01-HH-1234", 123)
         self.assertRaises(ValueError, Car, 123, 123)
+
+    def test_car_raises_error_if_invalid_reg_no(self):
+        self.assertRaises(ValueError, Car, "KA-01", "red")
 
 class TestCarMethods(unittest.TestCase):
 
@@ -33,5 +36,5 @@ class TestCarMethods(unittest.TestCase):
 
     def test_get_car_reg_no(self):
         self.assertEqual(self.car1.getRegNo(), "KA-01-HH-1234")
-
+    
         
