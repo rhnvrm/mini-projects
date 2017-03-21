@@ -1,0 +1,5 @@
+avr-gcc -mmcu=atmega16 -Os line.c -o line.o
+
+avr-objcopy -j .text -j .data -O ihex  line.o  line.hex
+
+sudo avrdude -c usbasp -p m16  -U flash:w:line.hex 
