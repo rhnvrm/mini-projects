@@ -1,4 +1,4 @@
 # J2ME Lab 
 
-Coursework Labs for Wireless and Mobile Systems Course at SNU
+Coursework and Labs for Wireless and Mobile Systems Course at Shiv Nadar University under Prof. Debopam Acharya
 
