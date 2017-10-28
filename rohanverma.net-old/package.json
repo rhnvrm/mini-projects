@@ -1,0 +1,23 @@
+{
+  "name": "abdonrd.com",
+  "description": "My personal website",
+  "version": "0.8.0",
+  "author": "Abdón Rodríguez Davila <a@abdonrd.com> (https://abdonrd.com)",
+  "homepage": "https://abdonrd.com",
+  "license": "https://abdonrd.com/LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/abdonrd/abdonrd.com.git"
+  },
+  "bugs": {
+    "url": "https://github.com/abdonrd/abdonrd.com/issues"
+  },
+  "scripts": {
+    "lint": "gulp lint"
+  },
+  "devDependencies": {
+    "eslint-plugin-html": "^1.5.0",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^2.0.0"
+  }
+}

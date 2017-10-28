@@ -1,0 +1,80 @@
+{
+  "profile": {
+    "firstName": "Rohan",
+    "lastName": "Verma",
+    "nickname": "rhnvrm",
+    "location": "New Delhi, India",
+    "summary": "I am a Developer and a Computer Science Student",
+    "linkedinProfile": "https://www.linkedin.com/in/rhnvrm",
+    "twitterProfile": "https://twitter.com/rhnvrm",
+    "googlePlusProfile": "https://plus.google.com/+rhnvrm",
+    "githubProfile": "https://github.com/rhnvrm",
+    "myBlog": "https://rhnvrm.github.io/"
+  },
+  "experience": {
+    "jobs": [
+      {
+        "company": "Apache Allura, Google Summer of Code",
+        "title": "Student Developer Intern",
+        "location": {
+          "short": "Online",
+          "long": "Online"
+        },
+        "period": {
+          "start": "2016-05",
+          "finish": "",
+          "present": true
+        }
+      },
+      {
+        "company": "Apache Allura, Apache Software Foundation",
+        "title": "Committer, Member of PMC",
+        "location": {
+          "short": "Online",
+          "long": "Online"
+        },
+        "period": {
+          "start": "2016-09",
+          "finish": "",
+          "present": true
+        }
+      },
+      {
+        "company": "Association for Computing Machinery, SNU",
+        "title": "Treasurer, Member of Core Committee",
+        "location": {
+          "short": "SNU",
+          "long": "Shiv Nadar University"
+        },
+        "period": {
+          "start": "2015-12",
+          "finish": "",
+          "present": true
+        }
+      }
+    ],
+    "skills": []
+  },
+  "education": {
+    "education": [
+      {
+        "school": "Shiv Nadar University",
+        "degree": "B.Tech Computer Science & Engineering",
+        "period": {
+          "start": "2014",
+          "finish": "",
+          "present": true
+        }
+      },
+      {
+        "school": "Apeejay School, Pitampura",
+        "degree": "Central Board of Secondary Education, India",
+        "period": {
+          "start": "2000",
+          "finish": "2014",
+          "present": false
+        }
+      }
+    ]
+  }
+}
