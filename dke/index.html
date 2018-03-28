@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  
+
+  
+  
+  
+
+  
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>
+
+  <script src="https://twemoji.maxcdn.com/2/twemoji.min.js?2.3.1"></script>
+
+  
+
+  
+
+  
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+  
+
+  
+    
+      <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
+  
+    
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    
+  
+    
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    
+  
+    
+      <script type="text/javascript" src="https://download.affectiva.com/js/3.2/affdex.js"></script>
+    
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+  
+
+  <style type="text/css">
+    
+  </style>
+
+  <title>Emotive AdSense</title>
+
+  
+</head>
+
+<body>
+  <body onload="onStart()">
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-md-3" >
+      <center><div style="padding-top:50px" id="affdex_elements"></div></center>
+      <center><div id="ad"></div></center>
+      </div>
+      <div class="col-md-6" id="video">
+        <iframe width="100%" height="480px" src="https://www.youtube.com/embed/jw2U-Ms1X9Y?autoplay=1" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="col-md-3">
+        <div style="height:25em;">
+          <center><strong>EMOTION TRACKING RESULTS</strong></center>
+          <div id="results" style="word-wrap:break-word;"></div>
+        </div>
+        <div>
+          <strong>DETECTOR LOG MSGS</strong>
+        </div>
+        
+        <div id="logs"></div>
+      </div>
+    </div>
+    <div>
+      <div id="chartContainer" style="height: 370px; width:100%;"></div>
+    </div>
+  </div>
+</body>
+
+  
+
+
+
+
+<script type='text/javascript'>//<![CDATA[
+
+      // SDK Needs to create video and canvas nodes in the DOM in order to function
+      // Here we are adding those nodes a predefined div.
+      var divRoot = $("#affdex_elements")[0];
+      var width = 320;
+      var height = 240;
+      var faceMode = affdex.FaceDetectorMode.LARGE_FACES;
+      //Construct a CameraDetector and specify the image width / height and face detector mode.
+      var detector = new affdex.CameraDetector(divRoot, width, height, faceMode);
+      dps = []; // dataPoints
+      var chart = new CanvasJS.Chart("chartContainer", {
+        title :{
+          text: "Engagement Chart"
+        },
+        axisY: {
+          includeZero: true
+        },      
+        data: [{
+          type: "line",
+          dataPoints: dps
+        }]
+      });
+
+      var xVal = 0;
+      var yVal = 100; 
+      var dataLength = 20; // number of dataPoints visible at any point
+      //Enable detection of all Expressions, Emotions and Emojis classifiers.
+      detector.detectAllEmotions();
+      detector.detectAllExpressions();
+      detector.detectAllEmojis();
+      detector.detectAllAppearance();
+
+      //Add a callback to notify when the detector is initialized and ready for runing.
+      detector.addEventListener("onInitializeSuccess", function() {
+        log('#logs', "The detector reports initialized");
+        //Display canvas instead of video feed because we want to draw the feature points on it
+        $("#face_video_canvas").css("display", "block");
+        $("#face_video").css("display", "none");
+      });
+
+      function log(node_name, msg) {
+        $(node_name).append("<span>" + msg + "</span><br />")
+      }
+
+      //function executes when Start button is pushed.
+      function onStart() {
+        if (detector && !detector.isRunning) {
+          $("#logs").html("");
+          detector.start();
+        }
+
+        
+        
+
+        log('#logs', "Starting Application");
+      }
+
+      //function executes when the Stop button is pushed.
+      function onStop() {
+        log('#logs', "Clicked the stop button");
+        if (detector && detector.isRunning) {
+          detector.removeEventListener();
+          detector.stop();
+        }
+      };
+
+      //function executes when the Reset button is pushed.
+      function onReset() {
+        log('#logs', "Clicked the reset button");
+        if (detector && detector.isRunning) {
+          detector.reset();
+
+          $('#results').html("");
+        }
+      };
+
+      //Add a callback to notify when camera access is allowed
+      detector.addEventListener("onWebcamConnectSuccess", function() {
+        log('#logs', "Webcam access allowed");
+      });
+
+      //Add a callback to notify when camera access is denied
+      detector.addEventListener("onWebcamConnectFailure", function() {
+        log('#logs', "webcam denied");
+        console.log("Webcam access denied");
+      });
+
+      //Add a callback to notify when detector is stopped
+      detector.addEventListener("onStopSuccess", function() {
+        log('#logs', "The detector reports stopped");
+        $("#results").html("");
+      });
+
+      //Add a callback to receive the results from processing an image.
+      //The faces object contains the list of the faces detected in an image.
+      //Faces object contains probabilities for all the different expressions, emotions and appearance metrics
+      detector.addEventListener("onImageResultsSuccess", function(faces, image, timestamp) {
+        $('#results').html("");
+        $('#ad').html("");
+        //log('#results', "Timestamp: " + timestamp.toFixed(2));
+        //log('#results', "Number of faces found: " + faces.length);
+        if (faces.length > 0) {
+          //log('#results', "Appearance: " + JSON.stringify(faces[0].appearance));
+          // log('#results', "Emotions: " + JSON.stringify(faces[0].emotions, function(key, val) {
+          //   return val.toFixed ? Number(val.toFixed(0)) : val;
+          // }));
+          //log('#results', "Expressions: " + JSON.stringify(faces[0].expressions, function(key, val) {
+          //  return val.toFixed ? Number(val.toFixed(0)) : val;
+          //}));
+
+
+
+          dps.push({
+                x: xVal,
+                y: faces[0].emotions.engagement 
+          });
+          xVal++;
+          chart.render();
+          log('#results', "<center>" + twemoji.parse(faces[0].emojis.dominantEmoji)) + "</center>";
+          if(faces[0].emotions.engagement > 75){
+            log("#ad", "<img src='http://via.placeholder.com/350x150?text=Advertisement'>")
+          }
+          log("#results", "<b>Joy: </b>" + faces[0].emotions.joy.toFixed(2))
+          log("#results", "<b>Sadness: </b>" + faces[0].emotions.sadness.toFixed(2))
+          log("#results", "<b>Anger: </b>" + faces[0].emotions.anger.toFixed(2))
+          log("#results", "<b>Fear: </b>" + faces[0].emotions.fear.toFixed(2))
+
+          drawFeaturePoints(image, faces[0].featurePoints);
+        }
+      });
+
+      //Draw the detected facial feature points on the image
+      function drawFeaturePoints(img, featurePoints) {
+        var contxt = $('#face_video_canvas')[0].getContext('2d');
+
+        var hRatio = contxt.canvas.width / img.width;
+        var vRatio = contxt.canvas.height / img.height;
+        var ratio = Math.min(hRatio, vRatio);
+
+        contxt.strokeStyle = "#FFFFFF";
+        for (var id in featurePoints) {
+          contxt.beginPath();
+          contxt.arc(featurePoints[id].x,
+            featurePoints[id].y, 2, 0, 2 * Math.PI);
+          contxt.stroke();
+
+        }
+      }
+
+//]]> 
+
+</script>
+
+
+</body>
+
+</html>
